@@ -3,7 +3,7 @@ module.exports = {
   content: [
     "./src/pages/**/*.{ts,tsx}",
     "./src/shared/ui/*.{ts,tsx}",
-    "./src/widgets/**/*.{ts,tsx}",
+    "./src/widgets/*.{ts,tsx}",
     "./src/features/**/ui/*.{ts,tsx}",
     "./src/features/**/ui/form/*.{ts,tsx}",
   ],

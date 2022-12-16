@@ -1,3 +1,5 @@
 export { Header } from "./header"
 export { Sidebar } from "./sidebar"
 export { SignTabs } from "./sign-tabs"
+export { SelectProducts } from "./select-products"
+export { SelectCurrencies } from "./select-currencies"

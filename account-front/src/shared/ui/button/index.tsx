@@ -33,7 +33,7 @@ export const Button = ({
       {...props}
       ref={refEl}
       type={type}
-      className={`${props.className} flex flex-row items-center justify-center h-10 text-center text-white bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1 ${buttonConfig.stateBtn[state]}`}
+      className={`${props.className} shrink-0 flex flex-row items-center justify-center h-10 text-center text-white bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1 ${buttonConfig.stateBtn[state]}`}
       onClick={onClick}
       disabled={
         state === ElementState.disabled || state === ElementState.failure

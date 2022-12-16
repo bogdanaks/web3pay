@@ -1,5 +1,6 @@
+import { CreateInvoice } from "features/create-invoice/ui"
 import React from "react"
-import { Button, Input } from "shared/ui"
+import { Input } from "shared/ui"
 import { Body } from "shared/ui/body"
 
 const InvoicesPage = () => {
@@ -7,7 +8,7 @@ const InvoicesPage = () => {
     <Body>
       <div className="flex flex-row w-full gap-5">
         <Input placeholder="Search" type="text" />
-        <Button className="w-40">Create invoice</Button>
+        <CreateInvoice />
       </div>
     </Body>
   )

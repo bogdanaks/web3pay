@@ -45,9 +45,9 @@ export const SelectProducts = ({
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                 ></path>
               </svg>
             </div>
@@ -63,113 +63,120 @@ export const SelectProducts = ({
           className="overflow-y-auto px-3 pb-3 h-48 text-sm text-gray-700 w-full"
           aria-labelledby="dropdownSearchButton"
         >
-          <li>
-            <div className="flex items-center p-2 rounded hover:bg-gray-100">
+          <li className="hover:cursor-pointer">
+            <div className="flex items-center p-2 rounded hover:bg-gray-100 hover:cursor-pointer">
               <input
                 id="checkbox-item-11"
                 type="checkbox"
+                readOnly={true}
                 value=""
-                className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 focus:ring-2"
+                className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 focus:ring-2 hover:cursor-pointer"
               />
               <label
                 htmlFor="checkbox-item-11"
-                className="ml-2 w-full text-sm font-medium text-gray-900 rounded"
+                className="ml-2 w-full text-sm font-medium text-gray-900 rounded hover:cursor-pointer"
               >
                 Bonnie Green
               </label>
             </div>
           </li>
-          <li>
-            <div className="flex items-center p-2 rounded hover:bg-gray-100">
+          <li className="hover:cursor-pointer">
+            <div className="flex items-center p-2 rounded hover:bg-gray-100 hover:cursor-pointer">
               <input
                 id="checkbox-item-12"
                 type="checkbox"
+                readOnly={true}
                 value=""
-                className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 focus:ring-2"
+                className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 focus:ring-2 hover:cursor-pointer"
               />
               <label
                 htmlFor="checkbox-item-12"
-                className="ml-2 w-full text-sm font-medium text-gray-900 rounded"
+                className="ml-2 w-full text-sm font-medium text-gray-900 rounded hover:cursor-pointer"
               >
                 Jese Leos
               </label>
             </div>
           </li>
-          <li>
-            <div className="flex items-center p-2 rounded hover:bg-gray-100">
+          <li className="hover:cursor-pointer">
+            <div className="flex items-center p-2 rounded hover:bg-gray-100 hover:cursor-pointer">
               <input
                 id="checkbox-item-13"
                 type="checkbox"
+                readOnly={true}
                 value=""
-                className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 focus:ring-2"
+                className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 focus:ring-2 hover:cursor-pointer"
               />
               <label
                 htmlFor="checkbox-item-13"
-                className="ml-2 w-full text-sm font-medium text-gray-900 rounded"
+                className="ml-2 w-full text-sm font-medium text-gray-900 rounded hover:cursor-pointer"
               >
                 Michael Gough
               </label>
             </div>
           </li>
-          <li>
-            <div className="flex items-center p-2 rounded hover:bg-gray-100">
+          <li className="hover:cursor-pointer">
+            <div className="flex items-center p-2 rounded hover:bg-gray-100 hover:cursor-pointer">
               <input
                 id="checkbox-item-14"
                 type="checkbox"
+                readOnly={true}
                 value=""
-                className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 focus:ring-2"
+                className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 focus:ring-2 hover:cursor-pointer"
               />
               <label
                 htmlFor="checkbox-item-14"
-                className="ml-2 w-full text-sm font-medium text-gray-900 rounded"
+                className="ml-2 w-full text-sm font-medium text-gray-900 rounded hover:cursor-pointer"
               >
                 Robert Wall
               </label>
             </div>
           </li>
-          <li>
-            <div className="flex items-center p-2 rounded hover:bg-gray-100">
+          <li className="hover:cursor-pointer">
+            <div className="flex items-center p-2 rounded hover:bg-gray-100 hover:cursor-pointer">
               <input
                 id="checkbox-item-15"
                 type="checkbox"
+                readOnly={true}
                 value=""
-                className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 focus:ring-2"
+                className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 focus:ring-2 hover:cursor-pointer"
               />
               <label
                 htmlFor="checkbox-item-15"
-                className="ml-2 w-full text-sm font-medium text-gray-900 rounded"
+                className="ml-2 w-full text-sm font-medium text-gray-900 rounded hover:cursor-pointer"
               >
                 Joseph Mcfall
               </label>
             </div>
           </li>
-          <li>
+          <li className="hover:cursor-pointer">
             <div className="flex items-center p-2 rounded hover:bg-gray-100">
               <input
                 id="checkbox-item-16"
                 type="checkbox"
                 value=""
-                className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 focus:ring-2"
+                readOnly={true}
+                className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 focus:ring-2 hover:cursor-pointer"
               />
               <label
                 htmlFor="checkbox-item-16"
-                className="ml-2 w-full text-sm font-medium text-gray-900 rounded"
+                className="ml-2 w-full text-sm font-medium text-gray-900 rounded hover:cursor-pointer"
               >
                 Leslie Livingston
               </label>
             </div>
           </li>
-          <li>
-            <div className="flex items-center p-2 rounded hover:bg-gray-100">
+          <li className="hover:cursor-pointer">
+            <div className="flex items-center p-2 rounded hover:bg-gray-100 hover:cursor-pointer">
               <input
                 id="checkbox-item-17"
                 type="checkbox"
                 value=""
-                className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 focus:ring-2"
+                readOnly={true}
+                className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 focus:ring-2 hover:cursor-pointer"
               />
               <label
                 htmlFor="checkbox-item-17"
-                className="ml-2 w-full text-sm font-medium text-gray-900 rounded"
+                className="ml-2 w-full text-sm font-medium text-gray-900 rounded hover:cursor-pointer"
               >
                 Roberta Casas
               </label>

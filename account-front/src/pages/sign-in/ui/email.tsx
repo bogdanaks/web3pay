@@ -42,7 +42,7 @@ export const SignInEmail = () => {
             type="password"
             id="password_input"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  outline-1 outline-transparent focus-visible:outline-blue-500 focus-visible:outline-1 block w-full p-2.5"
-            placeholder="name@mail.com"
+            placeholder=""
             required
           ></input>
         </div>

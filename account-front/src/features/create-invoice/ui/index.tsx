@@ -31,7 +31,7 @@ export const CreateInvoice = () => {
         ref={windowRef}
         className={`${
           isVisibleCreate ? "right-0" : "-right-96"
-        } w-96 p-5 transition-all ease-in top-0 fixed h-full bg-white shadow-lg`}
+        } w-96 p-5 transition-all ease-in top-0 fixed h-full bg-white shadow-lg overflow-x-auto`}
       >
         <div className="flex flex-row justify-between items-center">
           <h2 className="text-lg">Create new invoice</h2>
@@ -48,6 +48,15 @@ export const CreateInvoice = () => {
           <div className="flex items-center justify-center">
             <Button type="submit" state={buttonState} className="w-full">
               Create invoice
+            </Button>
+          </div>
+          <div className="flex items-center justify-center mt-2">
+            <Button
+              type="submit"
+              state={buttonState}
+              className="w-full bg-gray-400"
+            >
+              Save as draft
             </Button>
           </div>
           {/* {serverError && (

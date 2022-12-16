@@ -1,6 +1,6 @@
 import React from "react"
 import { FieldValues, UseFormRegister } from "react-hook-form"
-import { Select } from "shared/ui"
+import { SelectProducts } from "widgets"
 
 export const CreateInvoiceFormProducts = ({
   register,
@@ -9,10 +9,10 @@ export const CreateInvoiceFormProducts = ({
 }) => {
   return (
     <div className="relative z-0 mb-6 w-full group">
-      <Select
+      <SelectProducts
         title="Select products (Optional)"
         placeHolder="Search products"
-        items={[1, 2, 3]}
+        products={[1, 2, 3]}
       />
       {/* <label
         htmlFor="products_input"

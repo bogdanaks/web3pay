@@ -14,17 +14,18 @@ export const SignTabs = ({ activeTab, onSetActiveTab }: SignTabsProps) => {
 
   return (
     <ul className="flex flex-wrap items-center justify-center text-sm font-medium text-center text-gray-500 dark:text-gray-400">
-      <li className="flex mr-2" onClick={() => handleTabClick("wallet")}>
+      <li className="flex mr-4" onClick={() => handleTabClick("wallet")}>
         <button
           className={classNames(
             "flex",
             "py-2",
             "px-3",
+            "shadow-md",
             "rounded-md",
             "hover:bg-gray-100",
             "hover:text-blue-800",
             {
-              "text-blue-600 bg-gray-100": activeTab === "wallet",
+              "text-blue-600 shadow-blue-500/50": activeTab === "wallet",
             }
           )}
         >
@@ -37,11 +38,12 @@ export const SignTabs = ({ activeTab, onSetActiveTab }: SignTabsProps) => {
             "flex",
             "py-2",
             "px-3",
+            "shadow-md",
             "rounded-md",
             "hover:bg-gray-100",
             "hover:text-blue-800",
             {
-              "text-blue-600 bg-gray-100": activeTab === "email",
+              "text-blue-600 shadow-blue-500/50": activeTab === "email",
             }
           )}
         >

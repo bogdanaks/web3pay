@@ -10,14 +10,31 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        "mobileL": "425px",
+        "mobileM": "375px",
+        "mobileS": "320px",
+      },
       height: {
-        '98': '26rem',
+        "98": "26rem",
+        "440px": "440px",
       },
       width: {
-        '124': '32rem',
+        "124": "32rem",
+        "440px": "440px",
+      },
+      maxHeight: {
+        "440px": "440px",
+      },
+      maxWidth: {
+        "440px": "440px",
       },
       spacing: {
-        '124': '32rem',
+        "124": "32rem",
+        "50%": "50%",
+      },
+      boxShadow: {
+        "around": "0 0 15px 0 rgba(34, 60, 80, 0.1)"
       }
     },
   },

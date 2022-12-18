@@ -1,7 +1,11 @@
 import Link from "next/link"
 import { useRouter } from "next/router"
 import React from "react"
-import { IoBag, IoBarChartOutline, IoSettingsOutline } from "react-icons/io5"
+import {
+  IoBagOutline,
+  IoBarChartOutline,
+  IoSettingsOutline,
+} from "react-icons/io5"
 
 export const Sidebar = () => {
   const router = useRouter()
@@ -42,7 +46,7 @@ export const Sidebar = () => {
               data-collapse-toggle="dropdown-example"
               onClick={() => handleDropDownClick("ecommerce")}
             >
-              <IoBag size={20} color="rgb(71, 74, 82)" />
+              <IoBagOutline size={20} color="rgb(71, 74, 82)" />
               <span className="flex-1 ml-3 text-left whitespace-nowrap">
                 E-commerce
               </span>

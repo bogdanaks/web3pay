@@ -10,7 +10,7 @@ export const SignInEmail = () => {
   return (
     <>
       <form className="mt-6 w-full" onSubmit={handleSubmit(onSubmit)}>
-        <div className="relative z-0 mb-6 w-full group">
+        <div className="relative z-0 mb-4 w-full group">
           <label
             htmlFor="email_input"
             className="block mb-2 text-sm font-medium text-gray-900"
@@ -28,7 +28,7 @@ export const SignInEmail = () => {
             required
           ></input>
         </div>
-        <div className="relative z-0 mb-6 w-full group">
+        <div className="relative z-0 mb-4 w-full group">
           <label
             htmlFor="password_input"
             className="block mb-2 text-sm font-medium text-gray-900"
@@ -46,7 +46,7 @@ export const SignInEmail = () => {
             required
           ></input>
         </div>
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center mt-8">
           <Button type="submit" state={buttonState} className="w-full">
             Sign In
           </Button>
@@ -57,7 +57,7 @@ export const SignInEmail = () => {
           </span>
         )}
       </form>
-      <div className="mt-4 flex flex-col items-center justify-center gap-2">
+      <div className="mt-4 flex flex-row items-center justify-between gap-2">
         <Link
           href="/sign-up"
           className="text-blue-600 px-2 hover:text-blue-900 text-sm"

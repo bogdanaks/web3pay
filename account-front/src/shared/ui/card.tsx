@@ -9,7 +9,7 @@ export const Card = ({ children, ...props }: CardProps) => {
   return (
     <div
       {...props}
-      className={`${props.className} flex flex-col p-4 shadow-lg rounded-lg`}
+      className={`${props.className} flex flex-col p-8 shadow-lg rounded-lg`}
     >
       {children}
     </div>

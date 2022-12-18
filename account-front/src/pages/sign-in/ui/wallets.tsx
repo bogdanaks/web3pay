@@ -12,11 +12,11 @@ export const SignInWallet = () => {
   } = useSignInWallet()
 
   return (
-    <div className="flex flex-wrap flex-col mt-6 h-full items-center justify-between">
-      <ul className="flex flex-wrap items-center justify-center gap-4 mb-4">
+    <div className="grid grid-cols-1 grid-rows-[1fr_20px] gap-4 mt-6 h-auto items-center justify-center mobileM:h-full">
+      <ul className="grid grid-cols-1 grid-rows-16 auto-cols-fr grid-flow-row gap-4 w-full h-full mobileM:grid-flow-col mobileM:grid-rows-[1fr]">
         <li
           onClick={connectMetaMask}
-          className="hover:cursor-pointer hover:border-blue-500 flex flex-col items-center justify-center border-2 border-gray-100 p-2 rounded-lg"
+          className="mobileM:h-40 my-auto hover:cursor-pointer hover:shadow-blue-500/50 flex flex-col items-center justify-center shadow-around p-2 px-3 rounded-lg"
         >
           <Image
             src="/assets/icon-wallets/metamask.svg"
@@ -28,7 +28,7 @@ export const SignInWallet = () => {
         </li>
         <li
           onClick={connectWalletConnect}
-          className="hover:cursor-pointer hover:border-blue-500 flex flex-col items-center justify-center border-2 border-gray-100 p-2 rounded-lg"
+          className="mobileM:h-40 my-auto hover:cursor-pointer hover:shadow-blue-500/50 flex flex-col items-center justify-center shadow-around p-2 px-3 rounded-lg"
         >
           <Image
             src="/assets/icon-wallets/walletconnect.svg"
@@ -40,7 +40,7 @@ export const SignInWallet = () => {
         </li>
         <li
           onClick={connectCoinBase}
-          className="hover:cursor-pointer hover:border-blue-500 flex flex-col items-center justify-center border-2 border-gray-100 p-2 rounded-lg"
+          className="mobileM:h-40 my-auto hover:cursor-pointer hover:shadow-blue-500/50 flex flex-col items-center justify-center shadow-around p-2 px-3 rounded-lg"
         >
           <Image
             src="/assets/icon-wallets/coinbase.svg"
@@ -52,22 +52,24 @@ export const SignInWallet = () => {
         </li>
       </ul>
       {serverError && (
-        <span className="flex items-center justify-center text-red-500 mb-2 m-auto text-center">
+        <span className="flex items-center justify-center text-red-500 text-center">
           {serverError}
         </span>
       )}
-      <Link
-        href="/sign-up"
-        className="text-blue-600 px-2 hover:text-blue-900 text-sm"
-      >
-        Sign Up
-      </Link>
-      <Link
-        href="/help/how-to-create-wallet"
-        className="text-blue-600 px-2 hover:text-blue-900 text-sm"
-      >
-        How to create wallet
-      </Link>
+      <div className="flex flex-row items-center justify-between w-full gap-2 mt-auto">
+        <Link
+          href="/sign-up"
+          className="text-blue-600 px-2 hover:text-blue-900 text-sm"
+        >
+          Sign Up
+        </Link>
+        <Link
+          href="/help/how-to-create-wallet"
+          className="text-blue-600 px-2 hover:text-blue-900 text-sm"
+        >
+          How to create wallet
+        </Link>
+      </div>
     </div>
   )
 }

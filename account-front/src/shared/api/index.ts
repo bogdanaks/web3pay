@@ -12,3 +12,5 @@ export { updateCompanyName, getShop } from "./shop"
 export { getCurrenciesByNetwork } from "./currency"
 
 export { addInvoice, getInvoiceById, getInvoices } from "./invoice"
+
+export { getNetworks, getNetworksWithCurrencies } from "./network"

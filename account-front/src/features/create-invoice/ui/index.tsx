@@ -20,8 +20,6 @@ export const CreateInvoice = () => {
     buttonState,
   } = useCreateInvoice()
 
-  console.log("isVisibleCreate", isVisibleCreate)
-
   return (
     <>
       <Button onClick={onButtonClick}>Create invoice</Button>

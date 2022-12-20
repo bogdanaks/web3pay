@@ -1,7 +1,5 @@
 import React from "react"
-import { VscClose } from "react-icons/vsc"
-import useOnClickOutside from "shared/hooks/use-on-click-outside"
-import { Button } from "shared/ui"
+import { Button, RightWindow } from "shared/ui"
 import { useCreateInvoice } from "../model/use-create-invoice"
 import {
   CreateInvoiceFormCurrencies,
@@ -12,7 +10,6 @@ import {
 } from "./form"
 
 export const CreateInvoice = () => {
-  const windowRef = React.useRef(null)
   const {
     isVisibleCreate,
     onButtonClick,
@@ -22,23 +19,17 @@ export const CreateInvoice = () => {
     onSubmit,
     buttonState,
   } = useCreateInvoice()
-  useOnClickOutside({ refBlock: windowRef, handler: hideCreateWindow })
+
+  console.log("isVisibleCreate", isVisibleCreate)
 
   return (
     <>
       <Button onClick={onButtonClick}>Create invoice</Button>
-      <div
-        ref={windowRef}
-        className={`${
-          isVisibleCreate ? "right-0" : "-right-124"
-        } w-124 p-5 transition-all ease-in top-0 fixed h-full bg-white shadow-lg overflow-x-auto`}
+      <RightWindow
+        onHide={hideCreateWindow}
+        title="Create new invoice"
+        isVisible={isVisibleCreate}
       >
-        <div className="flex flex-row justify-between items-center">
-          <h2 className="text-lg">Create new invoice</h2>
-          <button onClick={hideCreateWindow}>
-            <VscClose fontSize={24} />
-          </button>
-        </div>
         <form className="mt-6 w-full" onSubmit={handleSubmit(onSubmit)}>
           <CreateInvoiceFormCurrencies register={register} />
           <CreateInvoiceFormPrice register={register} />
@@ -63,7 +54,7 @@ export const CreateInvoice = () => {
             </span>
           )} */}
         </form>
-      </div>
+      </RightWindow>
     </>
   )
 }

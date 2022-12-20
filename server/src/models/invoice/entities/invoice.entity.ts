@@ -20,7 +20,7 @@ export class Invoice {
   id: number
 
   @Column()
-  shop_id: string
+  shop_id: number
 
   @OneToOne(() => Shop)
   @JoinColumn({ name: "shop_id" })

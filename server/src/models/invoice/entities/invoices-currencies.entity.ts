@@ -20,14 +20,18 @@ export class InvoicesCurrencies {
   id: string
 
   @Column()
-  invoice_id: string
+  invoice_id: number
 
   @OneToOne(() => Invoice)
   @JoinColumn({ name: "invoice_id" })
   invoice: Invoice
 
-  // @Column()
-  // currencies_settings: CurrenciesSettings
+  @Column()
+  currency_id: number
+
+  @OneToOne(() => Invoice)
+  @JoinColumn({ name: "currency_id" })
+  currency: Invoice
 
   @CreateDateColumn()
   @Column()

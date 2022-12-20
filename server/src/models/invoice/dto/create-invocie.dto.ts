@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger"
 import { Transform } from "class-transformer"
-import { IsEnum, IsOptional, IsString } from "class-validator"
+import { IsArray, IsEnum, IsOptional, IsString } from "class-validator"
 import { IsBiggerThan } from "src/common/validators/is-bigger-than"
 import { InvoiceTypes } from "../entities/invoice.entity"
 
@@ -19,6 +19,12 @@ export class CreateInvoice {
   @IsString()
   @ApiProperty()
   price_from?: string
+
+  @IsOptional()
+  @IsArray()
+  @ApiProperty({ isArray: true })
+  @Transform(({ value }) => value.map((val) => String(val)))
+  currencies_ids?: string[]
 
   @IsString()
   @IsBiggerThan("price_from", {

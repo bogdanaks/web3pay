@@ -35,7 +35,6 @@ export class NetworkController {
     data: FindAllNetworks
   ): Promise<Network[]> {
     if (!data) return this.networkService.getAll()
-    console.log("data", data)
 
     if (data.with_currencies && data.with_currencies === "true") {
       const currencies = await this.currencyService.getAll()

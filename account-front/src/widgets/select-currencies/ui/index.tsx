@@ -1,13 +1,13 @@
+import Image from "next/image"
 import React from "react"
 import { IoChevronDown } from "react-icons/io5"
-import { mockNetworks } from "shared/mock"
 import { useSelectCurrencies } from "../model"
 import { NetworkSelect } from "./network-select"
 
 interface SelectCurrenciesProps {
   title: string
   placeHolder: string
-  data: typeof mockNetworks
+  data: NetworkWithCurrencies[]
 }
 
 export const SelectCurrencies = ({
@@ -82,12 +82,14 @@ export const SelectCurrencies = ({
               return (
                 <NetworkSelect
                   key={index}
-                  image={network.icon}
-                  title={network.title}
-                  onClick={() => onClickNetwork(network.slug)}
-                  isActive={visibleNetwork === network.slug}
-                  isChecked={checkCheckedNetwork(network.slug)}
-                  onClickSelectAll={() => onClickSelectAllNetwork(network.slug)}
+                  image={network.img_url}
+                  title={network.name}
+                  onClick={() => onClickNetwork(network.ticker)}
+                  isActive={visibleNetwork === network.ticker}
+                  isChecked={checkCheckedNetwork(network.ticker)}
+                  onClickSelectAll={() =>
+                    onClickSelectAllNetwork(network.ticker)
+                  }
                 />
               )
             })
@@ -101,19 +103,35 @@ export const SelectCurrencies = ({
           {showedCurrencies.map((currency) => {
             return (
               <li
-                key={`${visibleNetwork}_${currency}`}
-                onClick={() => onClickCurrency(visibleNetwork, currency)}
+                key={`${visibleNetwork}_${currency.id}`}
+                onClick={() => onClickCurrency(visibleNetwork, currency.id)}
               >
                 <div className="flex items-center p-2 rounded hover:bg-gray-100 hover:cursor-pointer">
                   <input
                     type="checkbox"
                     value=""
-                    className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 focus:ring-2 hover:cursor-pointer"
-                    checked={checkCheckedCurrency(visibleNetwork, currency)}
+                    className="mr-2 w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 focus:ring-2 hover:cursor-pointer"
+                    checked={checkCheckedCurrency(visibleNetwork, currency.id)}
                     readOnly={true}
                   />
+                  {currency.img_url && (
+                    <img
+                      src={currency.img_url}
+                      alt={currency.name}
+                      width={20}
+                      height={20}
+                    />
+                  )}
+                  {!currency.img_url && (
+                    <Image
+                      src="/assets/unknown-crypto.svg"
+                      alt={currency.name}
+                      width={20}
+                      height={20}
+                    />
+                  )}
                   <label className="ml-2 w-full text-sm font-medium text-gray-900 rounded hover:cursor-pointer">
-                    {currency}
+                    {currency.ticker}
                   </label>
                 </div>
               </li>

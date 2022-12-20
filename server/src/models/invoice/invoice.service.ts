@@ -14,11 +14,11 @@ export class InvoiceService {
     return await this.invoiceRepository.find({ where: { shop_id } })
   }
 
-  getById(id: number): Promise<Invoice> {
-    try {
-      return this.invoiceRepository.findOneBy({ id })
-    } catch (err) {
-      // return responseError(ctx, errorBuilder.buildNotFoundError())
-    }
+  async getById(id: number): Promise<Invoice> {
+    return await this.invoiceRepository.findOneBy({ id })
+  }
+
+  async saveInvoice(invoice: Invoice): Promise<Invoice> {
+    return await this.invoiceRepository.save(invoice)
   }
 }

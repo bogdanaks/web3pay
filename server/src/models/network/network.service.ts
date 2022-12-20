@@ -1,19 +1,24 @@
-import { Inject, Injectable } from "@nestjs/common"
-import { Repository } from "typeorm"
+import { Injectable } from "@nestjs/common"
+import { InjectRepository } from "@nestjs/typeorm"
+import { FindOptionsWhere, Repository } from "typeorm"
 import { Network } from "./network.entity"
 
 @Injectable()
 export class NetworkService {
   constructor(
-    @Inject("NETWORK_REPOSITORY")
+    @InjectRepository(Network)
     private networkRepository: Repository<Network>
   ) {}
 
-  getById(id: number): Promise<Network> {
-    try {
-      return this.networkRepository.findOneBy({ id })
-    } catch (err) {
-      // return responseError(ctx, errorBuilder.buildNotFoundError())
-    }
+  async getAll(): Promise<Network[]> {
+    return await this.networkRepository.find({ order: { id: "ASC" } })
+  }
+
+  async findOneBy(where: FindOptionsWhere<Network>): Promise<Network> {
+    return await this.networkRepository.findOneBy(where)
+  }
+
+  async findAllBy(where: FindOptionsWhere<Network>): Promise<Network[]> {
+    return await this.networkRepository.findBy(where)
   }
 }

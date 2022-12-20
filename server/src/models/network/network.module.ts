@@ -1,12 +1,14 @@
 import { Module } from "@nestjs/common"
-import { DatabaseModule } from "src/providers/database/database.module"
+import { TypeOrmModule } from "@nestjs/typeorm"
+import { CurrencyModule } from "../currency/currency.module"
 import { NetworkController } from "./network.controller"
-import { networkProvider } from "./network.provider"
+import { Network } from "./network.entity"
 import { NetworkService } from "./network.service"
 
 @Module({
-  imports: [DatabaseModule],
+  imports: [TypeOrmModule.forFeature([Network]), CurrencyModule],
   controllers: [NetworkController],
-  providers: [NetworkService, networkProvider]
+  providers: [NetworkService],
+  exports: [TypeOrmModule]
 })
 export class NetworkModule {}

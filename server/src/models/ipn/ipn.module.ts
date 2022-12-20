@@ -1,12 +1,14 @@
 import { Module } from "@nestjs/common"
-import { DatabaseModule } from "src/providers/database/database.module"
+import { TypeOrmModule } from "@nestjs/typeorm"
+
+import { IpnKey } from "./ipn-key.entity"
 import { IpnController } from "./ipn.controller"
-import { ipnProvider } from "./ipn.provider"
 import { IpnService } from "./ipn.service"
 
 @Module({
-  imports: [DatabaseModule],
+  imports: [TypeOrmModule.forFeature([IpnKey])],
   controllers: [IpnController],
-  providers: [IpnService, ipnProvider]
+  providers: [IpnService],
+  exports: [TypeOrmModule]
 })
 export class IpnModule {}

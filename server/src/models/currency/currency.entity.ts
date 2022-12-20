@@ -15,7 +15,7 @@ export class Currency {
   id: number
 
   @Column()
-  network_id: string
+  network_id: number
 
   @OneToOne(() => Network)
   @JoinColumn({ name: "network_id" })

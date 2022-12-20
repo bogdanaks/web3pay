@@ -1,13 +1,14 @@
-import { BadRequestException, Inject, Injectable } from "@nestjs/common"
+import { BadRequestException, Injectable } from "@nestjs/common"
 import { FindOptionsWhere, Repository } from "typeorm"
 import { User } from "./user.entity"
 import * as bcrypt from "bcrypt"
 import { ConfigService } from "@nestjs/config"
+import { InjectRepository } from "@nestjs/typeorm"
 
 @Injectable()
 export class UserService {
   constructor(
-    @Inject("USER_REPOSITORY")
+    @InjectRepository(User)
     private userRepository: Repository<User>,
     private configService: ConfigService
   ) {}
@@ -23,23 +24,19 @@ export class UserService {
     email: string
     password: string
   }): Promise<User> {
-    try {
-      const hashPass = await bcrypt.hash(
-        password,
-        Number(this.configService.get("SALT_ROUNDS"))
-      )
+    const hashPass = await bcrypt.hash(
+      password,
+      Number(this.configService.get("SALT_ROUNDS"))
+    )
 
-      return await this.userRepository.save({ password: hashPass, email })
-    } catch (error) {
-      throw new BadRequestException("Internal server error")
-    }
+    return await this.userRepository.create({ password: hashPass, email })
   }
 
   async createUserByAddress({ address }: { address: string }): Promise<User> {
-    try {
-      return await this.userRepository.save({ address })
-    } catch (error) {
-      throw new BadRequestException("Internal server error")
-    }
+    return await this.userRepository.create({ address })
+  }
+
+  async saveUser(user: User): Promise<User> {
+    return await this.userRepository.save(user)
   }
 }

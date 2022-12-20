@@ -123,9 +123,6 @@ export const useSelectCurrencies = ({ data }: useSelectCurrenciesProps) => {
     return isFindInSelectedCurrencies
   }
 
-  console.log("isCheckedNetwork", isCheckedNetwork)
-  console.log("selectedCurrencies", selectedCurrencies)
-
   return {
     isOpen,
     onClick: () => setIsOpen(!isOpen),

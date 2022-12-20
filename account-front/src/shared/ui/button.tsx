@@ -1,6 +1,5 @@
 import React, { ButtonHTMLAttributes, ReactNode } from "react"
 import { VscError, VscLoading } from "react-icons/vsc"
-import { ElementState } from "app/enums"
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   onClick?: () => void
@@ -25,7 +24,7 @@ export const Button = ({
   children,
   type = "button",
   refEl,
-  state = ElementState.normal,
+  state = "normal",
   ...props
 }: ButtonProps) => {
   return (
@@ -35,17 +34,15 @@ export const Button = ({
       type={type}
       className={`${props.className} shrink-0 flex flex-row items-center justify-center h-10 text-center text-white bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1 ${buttonConfig.stateBtn[state]}`}
       onClick={onClick}
-      disabled={
-        state === ElementState.disabled || state === ElementState.failure
-      }
+      disabled={state === "disabled" || state === "failure"}
     >
       {children}
-      {state === ElementState.processing && (
+      {state === "processing" && (
         <div className="ml-4 animate-spin">
           <VscLoading fontSize={20} />
         </div>
       )}
-      {state === ElementState.failure && (
+      {state === "failure" && (
         <div className="ml-4">
           <VscError fontSize={20} />
         </div>

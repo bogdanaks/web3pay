@@ -1,5 +1,3 @@
-import { WalletProvider } from "app/enums"
-
 export function setIsWalletConnected(toggle: boolean): void {
   if (typeof window !== "undefined") {
     window.localStorage.setItem("isWalletConnect", String(toggle))

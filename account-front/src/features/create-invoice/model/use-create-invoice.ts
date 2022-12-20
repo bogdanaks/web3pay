@@ -1,10 +1,9 @@
-import { ElementState } from "app/enums"
 import React from "react"
 import { FieldValues, useForm } from "react-hook-form"
 
 export const useCreateInvoice = () => {
   const [isVisibleCreate, setIsVisibleCreate] = React.useState(false)
-  const [buttonState, setButtonState] = React.useState(ElementState.normal)
+  const [buttonState, setButtonState] = React.useState<ElementState>("normal")
 
   const { register, handleSubmit } = useForm()
 

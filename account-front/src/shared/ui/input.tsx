@@ -1,4 +1,3 @@
-import { ElementState } from "app/enums"
 import React, { InputHTMLAttributes } from "react"
 import { FieldValues, UseFormRegister } from "react-hook-form"
 
@@ -15,7 +14,7 @@ export const Input = ({
   register,
   registerId,
   registerOpts,
-  state = ElementState.normal,
+  state = "normal",
   variant = "standard",
   label,
   ...props

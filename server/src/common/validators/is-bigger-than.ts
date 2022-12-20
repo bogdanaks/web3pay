@@ -19,7 +19,9 @@ export function IsBiggerThan(
       validator: {
         validate(value: any, args: ValidationArguments) {
           const [relatedPropertyName] = args.constraints
-          const relatedValue = Big((args.object as any)[relatedPropertyName])
+          const relatedValue = Big(
+            (args.object as any)[relatedPropertyName] || 0
+          )
           const valueBig = Big(value)
 
           return valueBig.gt(relatedValue)

@@ -1,5 +1,7 @@
 import { Module } from "@nestjs/common"
-import { ConfigModule } from "@nestjs/config"
+import { ConfigModule, ConfigService } from "@nestjs/config"
+import { TypeOrmModule } from "@nestjs/typeorm"
+
 import { AuthModule } from "src/auth/auth.module"
 import { ApiKeyModule } from "../api-key/api-key.module"
 import { CurrencyModule } from "../currency/currency.module"
@@ -16,6 +18,20 @@ import { AppService } from "./app.service"
 @Module({
   imports: [
     ConfigModule.forRoot(),
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        type: "postgres",
+        host: configService.get("PG_HOST"),
+        port: configService.get("PG_PORT"),
+        username: configService.get("PG_USER"),
+        password: configService.get("PG_PASSWORD"),
+        database: configService.get("PG_DATABASE"),
+        synchronize: false,
+        autoLoadEntities: true
+      }),
+      inject: [ConfigService]
+    }),
     AuthModule,
     UserModule,
     CurrencyModule,

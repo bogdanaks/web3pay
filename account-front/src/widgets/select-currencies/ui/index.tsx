@@ -104,15 +104,15 @@ export const SelectCurrencies = ({
                 key={`${visibleNetwork}_${currency}`}
                 onClick={() => onClickCurrency(visibleNetwork, currency)}
               >
-                <div className="flex items-center p-2 rounded hover:bg-gray-100">
+                <div className="flex items-center p-2 rounded hover:bg-gray-100 hover:cursor-pointer">
                   <input
                     type="checkbox"
                     value=""
-                    className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 focus:ring-2"
+                    className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 focus:ring-2 hover:cursor-pointer"
                     checked={checkCheckedCurrency(visibleNetwork, currency)}
                     readOnly={true}
                   />
-                  <label className="ml-2 w-full text-sm font-medium text-gray-900 rounded">
+                  <label className="ml-2 w-full text-sm font-medium text-gray-900 rounded hover:cursor-pointer">
                     {currency}
                   </label>
                 </div>

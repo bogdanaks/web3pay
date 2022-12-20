@@ -1,78 +1,83 @@
 import React from "react"
-import { mockNetworks } from "shared/mock"
 
 interface useSelectCurrenciesProps {
-  data: typeof mockNetworks
+  data: NetworkWithCurrencies[]
 }
 
 export const useSelectCurrencies = ({ data }: useSelectCurrenciesProps) => {
   const [isOpen, setIsOpen] = React.useState(true)
-  const [visibleNetwork, setVisibleNetwork] = React.useState(data[0].slug)
+  const [visibleNetwork, setVisibleNetwork] = React.useState(data[0].ticker)
   const [isCheckedNetwork, setIsCheckedNetwork] = React.useState<{
-    [network: string]: boolean
+    [networkName: string]: boolean
   }>({})
   const [selectedCurrencies, setSelectedCurrencies] = React.useState<{
-    [network: string]: string[]
+    [networkName: string]: string[]
   }>({})
 
-  const onClickNetwork = (network: string): void => {
-    setVisibleNetwork(network)
+  const onClickNetwork = (networkName: string): void => {
+    setVisibleNetwork(networkName)
   }
 
-  const checkCheckedNetwork = (network: string): boolean => {
-    const isExist = network in isCheckedNetwork
-    return isExist ? isCheckedNetwork[network] : false
+  const checkCheckedNetwork = (networkName: string): boolean => {
+    const isExist = networkName in isCheckedNetwork
+    return isExist ? isCheckedNetwork[networkName] : false
   }
 
-  const onClickSelectAllNetwork = (network: string): void => {
-    const isExist = network in isCheckedNetwork
+  const onClickSelectAllNetwork = (networkName: string): void => {
+    const isExist = networkName in isCheckedNetwork
 
     if (isExist) {
-      if (isCheckedNetwork[network]) {
+      if (isCheckedNetwork[networkName]) {
         setIsCheckedNetwork((prevState) => ({
           ...prevState,
-          [network]: false,
+          [networkName]: false,
         }))
         setSelectedCurrencies((prevState) => ({
           ...prevState,
-          [network]: [],
+          [networkName]: [],
         }))
         return
       }
 
       setIsCheckedNetwork((prevState) => ({
         ...prevState,
-        [network]: true,
+        [networkName]: true,
       }))
       setSelectedCurrencies((prevState) => ({
         ...prevState,
-        [network]: data.find((n) => n.slug === network)?.currencies || [],
+        [networkName]:
+          data
+            .find((n) => n.name === networkName)
+            ?.currencies.map((currency) => currency.id) || [],
       }))
     }
 
     setIsCheckedNetwork((prevState) => ({
       ...prevState,
-      [network]: true,
+      [networkName]: true,
     }))
     setSelectedCurrencies((prevState) => ({
       ...prevState,
-      [network]: data.find((n) => n.slug === network)?.currencies || [],
+      [networkName]:
+        data
+          .find((n) => n.name === networkName)
+          ?.currencies.map((currency) => currency.id) || [],
     }))
   }
 
   const showedCurrencies = React.useMemo(() => {
-    return data.find((n) => n.slug === visibleNetwork)?.currencies || []
-  }, [visibleNetwork])
+    return data.find((n) => n.ticker === visibleNetwork)?.currencies || []
+  }, [data, visibleNetwork])
 
-  const onClickCurrency = (network: string, currency: string): void => {
-    const isNetworkExists = network in selectedCurrencies
+  const onClickCurrency = (networkName: string, currencyId: string): void => {
+    const isNetworkExists = networkName in selectedCurrencies
     const isAlreadyAdded =
-      isNetworkExists && selectedCurrencies[network].includes(currency)
+      isNetworkExists && selectedCurrencies[networkName].includes(currencyId)
 
     if (!isNetworkExists) {
       setSelectedCurrencies((prevState) => ({
         ...prevState,
-        [network]: [currency],
+        [networkName]: [currencyId],
       }))
       return
     }
@@ -80,45 +85,50 @@ export const useSelectCurrencies = ({ data }: useSelectCurrenciesProps) => {
     if (isAlreadyAdded) {
       setIsCheckedNetwork((prevState) => ({
         ...prevState,
-        [network]: false,
+        [networkName]: false,
       }))
 
       setSelectedCurrencies((prevState) => ({
         ...prevState,
-        [network]: [...prevState[network].filter((c) => c !== currency)],
+        [networkName]: [
+          ...prevState[networkName].filter((c) => c !== currencyId),
+        ],
       }))
       return
     }
 
     if (!isAlreadyAdded) {
       if (
-        selectedCurrencies[network].length + 1 ===
-        data.find((n) => n.slug === network)?.currencies.length
+        selectedCurrencies[networkName].length + 1 ===
+        data.find((n) => n.name === networkName)?.currencies.length
       ) {
         setIsCheckedNetwork((prevState) => ({
           ...prevState,
-          [network]: true,
+          [networkName]: true,
         }))
       }
 
       setSelectedCurrencies((prevState) => ({
         ...prevState,
-        [network]: prevState[network].concat(currency),
+        [networkName]: prevState[networkName].concat(currencyId),
       }))
       return
     }
   }
 
-  const checkCheckedCurrency = (network: string, currency: string): boolean => {
-    const isAllChecked = isCheckedNetwork[network] || false
+  const checkCheckedCurrency = (
+    networkName: string,
+    currencyTicker: string
+  ): boolean => {
+    const isAllChecked = isCheckedNetwork[networkName] || false
     if (isAllChecked) return true
 
-    const isExistsCurrensies = network in selectedCurrencies
+    const isExistsCurrensies = networkName in selectedCurrencies
 
     if (!isExistsCurrensies) return false
 
     const isFindInSelectedCurrencies =
-      selectedCurrencies[network].includes(currency)
+      selectedCurrencies[networkName].includes(currencyTicker)
 
     return isFindInSelectedCurrencies
   }

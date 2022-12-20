@@ -1,6 +1,6 @@
+import { useNetworkWithCurrencies } from "entities/network/model/use-networks-with-currencies"
 import React from "react"
 import { FieldValues, UseFormRegister } from "react-hook-form"
-import { mockNetworks } from "shared/mock"
 import { SelectCurrencies } from "widgets"
 
 export const CreateInvoiceFormCurrencies = ({
@@ -8,12 +8,16 @@ export const CreateInvoiceFormCurrencies = ({
 }: {
   register: UseFormRegister<FieldValues>
 }) => {
+  const { data } = useNetworkWithCurrencies()
+
+  if (!data) return null
+
   return (
     <div className="relative z-0 mb-6 w-full group">
       <SelectCurrencies
         title="Select currencies"
         placeHolder="Search currency"
-        data={mockNetworks}
+        data={data}
       />
       {/* <label
         htmlFor="currencies_input"

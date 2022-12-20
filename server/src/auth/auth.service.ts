@@ -9,6 +9,8 @@ import { ShopService } from "src/models/shop/shop.service"
 import { UserService } from "src/models/user/user.service"
 import * as bcrypt from "bcrypt"
 import { utils } from "ethers"
+import { DataSource } from "typeorm"
+import { Shop } from "src/models/shop/shop.entity"
 
 interface SignWeb3Props {
   address: string
@@ -26,19 +28,26 @@ export class AuthService {
   private readonly logger = new Logger(AuthService.name)
 
   constructor(
+    private dataSource: DataSource,
     private userService: UserService,
     private shopService: ShopService,
     private jwtService: JwtService
   ) {}
 
   async signUpEmail({ email, password }: SignEmailProps) {
-    let newUser
-    let newShop
+    const newUser = await this.userService.createUserByEmail({
+      email,
+      password
+    })
+    let newShop: Shop
 
-    await Promise.all([
-      (newUser = await this.userService.createUserByEmail({ email, password })),
-      (newShop = await this.shopService.createShop({ user_id: newUser.id }))
-    ])
+    await this.dataSource.transaction(async (manager) => {
+      const txNewUser = await manager.save(newUser)
+      newShop = await this.shopService.createShop({
+        user_id: txNewUser.id
+      })
+      await manager.save(newShop)
+    })
 
     return {
       access_token: this.jwtService.sign(
@@ -59,13 +68,16 @@ export class AuthService {
       signature
     )
     if (address !== verifySign) throw new ForbiddenException()
-    let newUser
-    let newShop
+    const newUser = await this.userService.createUserByAddress({ address })
+    let newShop: Shop
 
-    await Promise.all([
-      (newUser = await this.userService.createUserByAddress({ address })),
-      (newShop = await this.shopService.createShop({ user_id: newUser.id }))
-    ])
+    await this.dataSource.transaction(async (manager) => {
+      const txNewUser = await manager.save(newUser)
+      newShop = await this.shopService.createShop({
+        user_id: txNewUser.id
+      })
+      await manager.save(newShop)
+    })
 
     return {
       access_token: this.jwtService.sign(

@@ -133,12 +133,12 @@ export class AuthService {
 
     if (address !== verifySign) {
       this.logger.log(`Address ${address} has wrong verifySign`)
-      throw new BadRequestException()
+      throw new BadRequestException("Wrong sign")
     }
     const findUser = await this.userService.findBy({ address })
     if (!findUser) {
       this.logger.log(`Address ${address} not found`)
-      throw new BadRequestException()
+      throw new BadRequestException(`Address ${address} not found`)
     }
     if (!findUser.is_active) {
       this.logger.log(`Address ${address} isnt active`)

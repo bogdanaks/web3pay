@@ -9,8 +9,8 @@ import {
 } from "typeorm"
 import { Invoice } from "./invoice.entity"
 
-@Entity({ name: "invoices_items" })
-export class InvoiceItems {
+@Entity({ name: "invoices_products" })
+export class InvoiceProducts {
   @PrimaryGeneratedColumn()
   id: string
 

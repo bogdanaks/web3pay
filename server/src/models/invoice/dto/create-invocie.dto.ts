@@ -23,7 +23,11 @@ export class CreateInvoice {
   @IsOptional()
   @IsArray()
   @ApiProperty({ isArray: true })
-  @Transform(({ value }) => value.map((val) => String(val)))
+  @Transform(({ value }) => {
+    if (!value) return
+    const unique = [...new Set(value)]
+    return unique.map((val) => String(val))
+  })
   currencies_ids?: string[]
 
   @IsString()

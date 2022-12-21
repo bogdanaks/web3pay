@@ -17,7 +17,7 @@ export enum SwitchType {
 @Entity({ name: "invoices_currencies" })
 export class InvoicesCurrencies {
   @PrimaryGeneratedColumn()
-  id: string
+  id: number
 
   @Column()
   invoice_id: number

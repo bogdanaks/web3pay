@@ -5,13 +5,19 @@ import { CurrencyModule } from "../currency/currency.module"
 import { InvoicePayments } from "./entities/invoice-payment.entity"
 import { InvoiceProducts } from "./entities/invoice-products.entity"
 import { Invoice } from "./entities/invoice.entity"
+import { InvoicesCurrencies } from "./entities/invoices-currencies.entity"
 
 import { InvoiceController } from "./invoice.controller"
 import { InvoiceService } from "./invoice.service"
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Invoice, InvoicePayments, InvoiceProducts]),
+    TypeOrmModule.forFeature([
+      Invoice,
+      InvoicePayments,
+      InvoiceProducts,
+      InvoicesCurrencies
+    ]),
     CurrencyModule
   ],
   controllers: [InvoiceController],

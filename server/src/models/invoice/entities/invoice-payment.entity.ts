@@ -12,10 +12,10 @@ import { Invoice } from "./invoice.entity"
 @Entity({ name: "invoices_payments" })
 export class InvoicePayments {
   @PrimaryGeneratedColumn()
-  id: string
+  id: number
 
   @Column()
-  invoice_id: string
+  invoice_id: number
 
   @OneToOne(() => Invoice)
   @JoinColumn({ name: "invoice_id" })

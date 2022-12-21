@@ -56,7 +56,6 @@ export class InvoiceController {
     )
     data: CreateInvoice
   ): Promise<Invoice> {
-    console.log(data)
     if (data.currencies_ids) {
       const currencies = await this.currencyService.getAllByIds(
         data.currencies_ids
@@ -68,19 +67,18 @@ export class InvoiceController {
         })
         .filter(Boolean)
 
-      if (isNotIncluded) {
+      if (isNotIncluded.length) {
         throw new BadRequestException(
           `Currencies ${isNotIncluded.join(", ")} is not founds`
         )
       }
 
-      // return this.invoiceService.createInvoiceWithCurrencies({
-      //   ...data,
-      //   shop_id: user.shop_id
-      // })
+      return this.invoiceService.createInvoiceWithCurrencies({
+        ...data,
+        shop_id: user.shop_id
+      })
     }
 
-    return
-    // return this.invoiceService.createInvoice({ ...data, shop_id: user.shop_id })
+    return this.invoiceService.saveInvoice({ ...data, shop_id: user.shop_id })
   }
 }

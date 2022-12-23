@@ -10,6 +10,10 @@ export const CreateInvoiceFormCurrencies = ({
 }) => {
   const { data } = useNetworkWithCurrencies()
 
+  const onSet = (data: any) => {
+    console.log("onSet data", data)
+  }
+
   if (!data) return null
 
   return (
@@ -18,6 +22,7 @@ export const CreateInvoiceFormCurrencies = ({
         title="Select currencies"
         placeHolder="Search currency"
         data={data}
+        onSet={onSet}
       />
       {/* <label
         htmlFor="currencies_input"

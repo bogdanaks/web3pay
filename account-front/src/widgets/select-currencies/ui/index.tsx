@@ -8,25 +8,29 @@ interface SelectCurrenciesProps {
   title: string
   placeHolder: string
   data: NetworkWithCurrencies[]
+  onSet: (data: any) => void
 }
 
 export const SelectCurrencies = ({
   title,
   placeHolder,
   data,
+  onSet,
 }: SelectCurrenciesProps) => {
   const {
     isOpen,
     onClick,
     onClickNetwork,
     visibleNetwork,
-    checkCheckedNetwork,
+    selectedCurrencies,
     onClickSelectAllNetwork,
     showedCurrencies,
     onClickCurrency,
     checkCheckedCurrency,
+    checkCheckedNetwork,
   } = useSelectCurrencies({
     data,
+    onSet,
   })
 
   return (
@@ -84,12 +88,10 @@ export const SelectCurrencies = ({
                   key={index}
                   image={network.img_url}
                   title={network.name}
-                  onClick={() => onClickNetwork(network.ticker)}
-                  isActive={visibleNetwork === network.ticker}
-                  isChecked={checkCheckedNetwork(network.ticker)}
-                  onClickSelectAll={() =>
-                    onClickSelectAllNetwork(network.ticker)
-                  }
+                  onClick={() => onClickNetwork(network.id)}
+                  isActive={visibleNetwork === network.id}
+                  isChecked={checkCheckedNetwork(network.id)}
+                  onClickSelectAll={() => onClickSelectAllNetwork(network.id)}
                 />
               )
             })
@@ -109,9 +111,10 @@ export const SelectCurrencies = ({
                 <div className="flex items-center p-2 rounded hover:bg-gray-100 hover:cursor-pointer">
                   <input
                     type="checkbox"
-                    value=""
                     className="mr-2 w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 focus:ring-2 hover:cursor-pointer"
-                    checked={checkCheckedCurrency(visibleNetwork, currency.id)}
+                    checked={
+                      checkCheckedCurrency(visibleNetwork, currency.id) || false
+                    }
                     readOnly={true}
                   />
                   {currency.img_url && (

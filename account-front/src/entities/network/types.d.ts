@@ -1,5 +1,5 @@
 interface Network {
-  id: number
+  id: string
   ticker: string
   name: string
   chain_id: string

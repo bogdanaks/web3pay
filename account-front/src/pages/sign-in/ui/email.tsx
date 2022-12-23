@@ -57,7 +57,7 @@ export const SignInEmail = () => {
           </span>
         )}
       </form>
-      <div className="mt-4 flex flex-row items-center justify-between gap-2">
+      <div className="mt-4 flex flex-row items-center justify-between gap-2 w-full">
         <Link
           href="/sign-up"
           className="text-blue-600 px-2 hover:text-blue-900 text-sm"

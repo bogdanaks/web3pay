@@ -1,9 +1,11 @@
 import { ApiProperty } from "@nestjs/swagger"
-import { IsString, IsOptional, IsNotEmpty } from "class-validator"
+import { Transform } from "class-transformer"
+import { IsBoolean, IsOptional, IsNotEmpty } from "class-validator"
 
 export class FindAllNetworks {
   @IsOptional()
-  @IsString()
-  @ApiProperty()
-  with_currencies: string
+  @IsBoolean()
+  @ApiProperty({ required: false })
+  @Transform(({ value }) => value === "true" || value === true)
+  with_currencies?: boolean
 }

@@ -36,7 +36,7 @@ export class NetworkController {
   ): Promise<Network[]> {
     if (!data) return this.networkService.getAll()
 
-    if (data.with_currencies && data.with_currencies === "true") {
+    if (data.with_currencies) {
       const currencies = await this.currencyService.getAll()
       const networks = await this.networkService.getAll()
       return networks.map((network) => {
